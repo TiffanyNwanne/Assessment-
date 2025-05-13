@@ -1,4 +1,4 @@
-# Assessment of Adverse Drug Reactions in a Controlled Clinical Trial – Xiang Xu
+# Assessment of Adverse Drug Reactions in a Controlled Clinical Trial by Xiang Xu
 
 [![Preview Image](https://github.com/TiffanyNwanne/Assessment-of-Adverse-Drug-Reactions-in-a-Controlled-Clinical-Trial-Xiang-Xu/blob/main/Dashboard.png))](https://github.com/TiffanyNwanne/Assessment-of-Adverse-Drug-Reactions-in-a-Controlled-Clinical-Trial-Xiang-Xu/blob/main/Dashboard.png)
 
