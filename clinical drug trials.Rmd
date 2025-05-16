@@ -1,0 +1,106 @@
+
+---
+title: "Clinical Trials: Drug Safety Analysis"
+author: "Tiffany Nwanne"
+date: "2025-05-16`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+## Data Import
+
+```{r}
+# Load dataset
+df <- read_csv(file.choose())
+```
+
+## Data Exploration
+
+```{r}
+str(df)
+summary(df)
+head(df)
+colSums(is.na(df))
+```
+
+## Data Cleaning
+
+```{r}
+df <- df |> select(-wbc, -rbc)
+
+table(df$sex)
+table(df$trx)
+table(df$adverse_effects)
+
+# Create binary outcome
+df$adverse_binary <- ifelse(df$adverse_effects == "Yes", 1, 0)
+```
+
+## Exploratory Data Analysis
+
+```{r}
+# Overall adverse effect rate
+mean(df$adverse_binary)
+
+# Adverse rate by treatment group
+df |> group_by(trx) |> summarise(adverse_rate = mean(adverse_binary))
+```
+
+### Adverse Effect Rate by Treatment Group
+
+```{r}
+ggplot(df, aes(x = trx, y = adverse_binary)) +
+  stat_summary(fun = mean, geom = "bar") +
+  ggtitle("Adverse Effect Rate by Treatment Group")
+```
+
+### Number of Adverse Effects by Group
+
+```{r}
+ggplot(df, aes(x = trx, y = num_effects)) +
+  geom_boxplot() +
+  ggtitle("Number of Adverse Effects by Group")
+```
+
+## Statistical Analysis
+
+### Chi-squared Test
+
+```{r}
+table1 <- table(df$trx, df$adverse_binary)
+chisq.test(table1)
+```
+
+### Mann-Whitney U Test
+
+```{r}
+drug <- df$num_effects[df$trx == "Drug"]
+placebo <- df$num_effects[df$trx == "Placebo"]
+wilcox.test(drug, placebo)
+```
+
+## Save Cleaned Data 
+
+```{r eval=FALSE}
+# Save as CSV
+write.csv(df, "cleaned_drug_safety.csv", row.names = FALSE)
+
+# Save as RDS
+saveRDS(df, "cleaned_drug_safety.rds")
+```
+
+## Save Plots 
+
+```{r eval=FALSE}
+plot1 <- ggplot(df, aes(x = trx, y = adverse_binary)) +
+  stat_summary(fun = mean, geom = "bar") +
+  ggtitle("Adverse Effect Rate by Treatment Group")
+
+ggsave("adverse_rate_by_group.png", plot = plot1, width = 6, height = 4, dpi = 300)
+```
