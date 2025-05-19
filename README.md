@@ -1,110 +1,65 @@
-# Clinical Drug Trial Report: Drug Safety Analysis
+# Assessment of Adverse Drug Reactions in a Controlled Clinical Trial – Xiang Xu
 
-**Author:** Tiffany Nwanne  
-**Date:** 2025-05-16
-
----
-
-## Executive Summary
-
-This report presents an analysis of a clinical drug trial aimed at evaluating the safety profile of a candidate drug compared to a placebo. Key endpoints include the incidence of adverse effects and their severity.
+![Screenshot 2025-05-12 at 4.56.19 AM.png](Assessment%20of%20Adverse%20Drug%20Reactions%20in%20a%20Controll%201f14799bb267802d9536f9ee47f3498a/Screenshot_2025-05-12_at_4.56.19_AM.png)
 
 ---
 
-## I. Introduction
+## **1. Project Background**
 
-### Background
-
-Understanding the safety profile of new pharmaceuticals is essential before clinical approval. This study examines adverse events reported by participants in a randomized trial.
-
-### Objective
-
-To compare the incidence and severity of adverse effects between participants who received the trial drug and those who received a placebo.
+Xiang Xu, a pharmaceutical company, has completed a randomized controlled clinical trial for a new drug and has provided access to its anonymized dataset to our non-profit organization, which is dedicated to drug safety. Our objective is to assess whether the treatment is associated with a higher incidence of adverse effects compared to a placebo, ensuring transparency and safety oversight.
 
 ---
 
-## II. Methods
+## **2. Executive Summary**
 
-### Study Design
-
-This is a two-arm randomized controlled trial comparing a candidate drug with a placebo.
-
-### Participants
-
-Participant-level data includes demographic variables (e.g., sex), treatment group assignment, and outcomes such as number and presence of adverse effects.
-
-### Endpoints
-
-- **Primary:** Incidence of adverse effects (binary)
-- **Secondary:** Number of reported adverse effects
-
-### Statistical Methods
-
-- Descriptive statistics and visualization
-- Chi-squared test for comparing proportions
-- Mann-Whitney U test for severity comparisons
+This analysis examined whether the drug group in the clinical trial experienced significantly more adverse reactions than the placebo group. A total of 1,536 individuals (9.5%) experienced at least one adverse effect. Importantly, both the drug and placebo groups showed nearly identical adverse event rates (9.5%), and statistical testing using the Chi-square test and Mann-Whitney U test confirmed that these differences were **not statistically significant**. Thus, there is no evidence from this trial that the drug causes more adverse effects than the placebo.
 
 ---
 
-## III. Results
+## **3. Dataset Description**
 
-### 1. Data Import
+The dataset includes 16,103 rows with the following relevant variables:
 
-Data was imported using R's `readr::read_csv()` from `drug_safety.csv`.
+- `age`: Age of the participant
+- `sex`: Gender
+- `trx`: Treatment group (Drug or Placebo)
+- `week`: Week of the trial
+- `wbc`, `rbc`: Lab measures (with missing values)
+- `adverse_effects`: Indicator of whether any adverse effect occurred (Yes/No)
+- `num_effects`: Count of adverse effects for an individual
 
-### 2. Baseline Data Exploration
-
-- Structural and summary statistics were assessed.
-- Missing data was checked using `colSums(is.na(df))`.
-
-### 3. Data Cleaning
-
-- Unused columns (`wbc`, `rbc`) were dropped.
-- Binary outcome `adverse_binary` was created from `adverse_effects`.
-
-### 4. Primary Endpoint: Adverse Effect Rate
-
-- Overall adverse rate was computed using `mean(df$adverse_binary)`.
-- Group-specific rates were summarized using `group_by(trx)`.
-
-**Figure 1: Adverse Effect Rate by Treatment Group**  
-Bar plot created with `ggplot2`, using `stat_summary(fun = mean)`.
-
-### 5. Secondary Endpoint: Severity of Adverse Effects
-
-**Figure 2: Number of Adverse Effects by Group**  
-Boxplot comparison of `num_effects` by treatment group.
-
-### 6. Statistical Testing
-
-#### Chi-squared Test
-
-Tested independence between treatment and adverse effect occurrence.
-
-```r
-table1 <- table(df$trx, df$adverse_binary)
-chisq.test(table1)
-```
-
-#### Mann-Whitney U Test
-
-Compared severity (number of effects) between treatment arms.
-
-```r
-wilcox.test(drug, placebo)
-```
+For this analysis, focus was placed solely on adverse effects and treatment assignment.
 
 ---
 
-## IV. Discussion
+## **4. Methodology**
 
-The drug group showed a *[insert interpretation]* difference in adverse effect rate compared to placebo. The Mann-Whitney test results further indicate *[insert direction]* severity.
+### **4.1 Data Cleaning**
+
+- Columns `wbc` and `rbc`, which had substantial missing values, were removed from the analysis to maintain focus on adverse effects.
+- A binary column `adverse_binary` was created from `adverse_effects` to facilitate numerical analysis (`Yes` = 1, `No` = 0).
+
+### **4.2 Data Exploration**
+
+- **Total with adverse effects**: 1,536 out of 16,103 (9.5%)
+- **Adverse effect rate by group**:
+    - Drug group: 9.55%
+    - Placebo group: 9.52%
+
+### **4.3 Statistical Analysis**
+
+- **Chi-square test of independence**:
+    - χ² ≈ 0.00028, **p-value ≈ 0.987**
+    - Interpretation: No significant association between treatment and adverse effects.
+- **Mann-Whitney U test** on `num_effects`:
+    - U ≈ 28,844,703, **p-value ≈ 0.941**
+    - Interpretation: No significant difference in the number of adverse effects between groups.
 
 ---
 
-## V. Conclusion
+## **5. Recommendations**
 
-This analysis suggests that the drug is associated with *[insert conclusion: higher/lower/similar]* adverse effects compared to placebo. Further trials with larger samples and longer follow-up are recommended.
-
----
-
+1. **No Evidence of Increased Risk**: Based on this trial, the drug does not show a higher rate or severity of adverse reactions compared to placebo.
+2. **Maintain Monitoring**: Continue to monitor safety during post-marketing or larger trials.
+3. **Improve Lab Data Completeness**: Consider enhancing lab data completeness (e.g., WBC/RBC) to support broader safety evaluations in future studies.
+4. **Further Subgroup Analysis** *(optional)*: While no overall difference was found, exploring subgroup effects (e.g., by age or sex) may still be valuable.
