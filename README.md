@@ -12,7 +12,7 @@ Xiang Xu, a pharmaceutical company, has completed a randomized controlled clinic
 
 ## **2. Executive Summary**
 
-This analysis examined whether the drug group in the clinical trial experienced significantly more adverse reactions than the placebo group. A total of 1,536 individuals (9.5%) experienced at least one adverse effect. Importantly, both the drug and placebo groups showed nearly identical adverse event rates (9.5%), and statistical testing using the Chi-square test and Mann-Whitney U test confirmed that these differences were **not statistically significant**. Thus, there is no evidence from this trial that the drug causes more adverse effects than the placebo.
+This analysis examined whether the drug group in the clinical trial experienced significantly more adverse reactions than the placebo group. A total of 1,536 individuals (9.5%) experienced at least one adverse effect. Importantly, both the drug and placebo groups showed nearly identical adverse event rates , and statistical testing using the Chi-square test and Mann-Whitney U test confirmed that these differences were **not statistically significant**. Thus, there is no evidence from this trial that the drug causes more adverse effects than the placebo.
 
 ---
 
@@ -33,6 +33,7 @@ For this analysis, focus was placed solely on adverse effects and treatment assi
 ---
 
 ## **4. Methodology**
+The full [![methodology](https://github.com/TiffanyNwanne/Assessment-of-Adverse-Drug-Reactions-in-a-Controlled-Clinical-Trial-Xiang-Xu/blob/main/Methodology.pdf) report is included here.
 
 ### **4.1 Data Cleaning**
 
