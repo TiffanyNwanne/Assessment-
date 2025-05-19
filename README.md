@@ -33,7 +33,7 @@ For this analysis, focus was placed solely on adverse effects and treatment assi
 ---
 
 ## **4. Methodology**
-The full [![methodology](https://github.com/TiffanyNwanne/Assessment-of-Adverse-Drug-Reactions-in-a-Controlled-Clinical-Trial-Xiang-Xu/blob/main/Methodology.pdf) report is included here.
+The full [methodology](https://github.com/TiffanyNwanne/Assessment-of-Adverse-Drug-Reactions-in-a-Controlled-Clinical-Trial-Xiang-Xu/blob/main/Methodology.pdf) report is included here.
 
 ### **4.1 Data Cleaning**
 
