@@ -108,25 +108,3 @@ This analysis suggests that the drug is associated with *[insert conclusion: hig
 
 ---
 
-## VI. Appendices
-
-### Code Snippets for Saving Outputs
-
-```r
-write.csv(df, "cleaned_drug_safety.csv", row.names = FALSE)
-saveRDS(df, "cleaned_drug_safety.rds")
-```
-
-### Plot Saving
-
-```r
-plot1 <- ggplot(df, aes(x = trx, y = adverse_binary)) +
-  stat_summary(fun = mean, geom = "bar") +
-  ggtitle("Adverse Effect Rate by Treatment Group")
-
-ggsave("adverse_rate_by_group.png", plot = plot1, width = 6, height = 4, dpi = 300)
-```
-
-### Session Info
-
-Captured with `sessionInfo()` for reproducibility.
